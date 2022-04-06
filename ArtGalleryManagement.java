@@ -28,8 +28,11 @@ class ArtGalleryManagement{
 
 		if(choice == 1){
 			System.out.println("--------Admin Controller--------");
-			Admin admin1 = new Admin(1,"Yangzom",97566,"yangzom@gmail.com","PASSWORD");
+			Admin admin1 = new Admin(Integer.parseInt(args[0]),args[1],Integer.parseInt(args[2]),args[3],args[4]);
+		
 			System.out.println("\nCheck Password: "+admin1.validateUser("PASSWORD"));
+			//Non-static variable name cannot be referenced from a static context
+			//System.out.println(name);
 			Admin admin2 = admin1;
 	
 			
@@ -173,7 +176,7 @@ class ArtGalleryManagement{
             Class cls = Class.forName("ArtGalleryManagement");
  
             // Creating object of main class
-       	// using newInstance() method
+       		// using newInstance() method
             ArtGalleryManagement obj = (ArtGalleryManagement)cls.newInstance();
  
             // Print and display
@@ -225,6 +228,8 @@ class Admin{
 	private long mobile;
 	private String email;
 	private String password;
+
+
 
 	public int getId() {				//instance method
 		return this.id;
@@ -323,7 +328,7 @@ class Customer{
 		System.out.println("\nCustomer Id:"+customerId+" Customer Name:"+customerName);
 	}
 
-	//CONSTRUCTOR CHAINING
+	//CONSTRUCTOR CHAINING     inheritance
 	Customer(){
 		System.out.println("\nCustomer chaining");
 	}
@@ -456,14 +461,12 @@ class Competition{
 		System.out.println(" Competition Date: " + competitionDate + " Competition Name: "+competitionName);
 	}	
 
-	//static nested class
+	//static nested class -- part of relationship
 	public static class CompName{
 		public void printCompetitionName(){
 			System.out.println(" Competition Name: " + competitionName);
 		}
 	}
-
-	
 
 }
 
