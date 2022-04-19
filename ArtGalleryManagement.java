@@ -28,12 +28,25 @@ class ArtGalleryManagement{
 
 		if(choice == 1){
 			System.out.println("--------Admin Controller--------");
-			Admin admin1 = new Admin(Integer.parseInt(args[0]),args[1],Integer.parseInt(args[2]),args[3],args[4]);
-		
-			System.out.println("\nCheck Password: "+admin1.validateUser("PASSWORD"));
-			//Non-static variable name cannot be referenced from a static context
-			//System.out.println(name);
-			Admin admin2 = admin1;
+			//Admin admin1 = new Admin(1,"Yangzom",97566,"yangzom@gmail.com","PASSWORD");
+			//System.out.println("\nCheck Password: "+admin1.validateUser("PASSWORD"));
+			//Admin admin2 = admin1;
+
+			// Lab6: String class
+			String username, password;
+			Scanner s= new Scanner(System.in);
+			System.out.print("Enter username: ");
+			username = s.nextLine();
+			System.out.print("Enter password: ");
+			password = s.nextLine();
+			if(username.equals("Tenzin") && password.equals("Tenzin@123"))
+			{
+				System.out.println("Authentication Successful!");
+			}
+			else
+			{
+				System.out.println("Authentication Failed!");
+			}
 	
 			
 
@@ -119,7 +132,7 @@ class ArtGalleryManagement{
 			System.out.println("\n\tWelcome to the Art Exhibition 2022");
 			System.out.println("\n1. Search Exhibition location");
 			System.out.println("2. Timing of the exhibition"); //Durantion 
-			System.out.println("3. Ticket Price");
+			System.out.println("3. Total Ticket Available/Sold");
 			System.out.println("4. Buy/Sell Ticket");
 			System.out.println("\nEnter your choice: ");
 			
@@ -165,6 +178,42 @@ class ArtGalleryManagement{
 
 			Competition.competitionDetail("21");
 			Competition.competitionDetail("21","A");
+			System.out.println("---------------------------------------");
+
+			//String Buffer
+			System.out.println("---String Buffer---");
+			StringBuffer sb1 = new StringBuffer("Art ");
+	  		StringBuffer sb2 = new StringBuffer("Year ");
+	  		StringBuffer sb3 = sb1.append("Competition");
+	  		StringBuffer sb4 = sb2.append(2022);
+	  		System.out.println(sb3);
+	  		System.out.println(sb4);
+	  		//length() and capacity()
+	  		System.out.println("Length of the StringBuffer:"+sb3.length());
+	  		System.out.println("Capacity of the StringBuffer:"+sb3.capacity());
+	  		
+	  		//insert() 
+	  		sb1.insert(0,"Annual ");
+	  		System.out.println("\n"+sb3);
+
+
+	  		//String Builder
+	  		StringBuilder sbObj=new StringBuilder();  
+			System.out.println("Default Capacity:"+sbObj.capacity());//default 16 
+		
+			sbObj.append("Java StringBuilder Class ");  
+
+			System.out.println("Capacity of "+sbObj+"is "+sbObj.capacity());// capacity 34	
+
+			sbObj.ensureCapacity(12);// no change  
+			System.out.println("After applying ensure capacity: "+sbObj.capacity());//still 34  
+
+			sbObj.ensureCapacity(60); // (34*2)+2 = 70 
+		   System.out.println("Applying ensure capacity again: "+sbObj.capacity()); //70 
+
+
+
+
 
 		}
 
@@ -228,8 +277,6 @@ class Admin{
 	private long mobile;
 	private String email;
 	private String password;
-
-
 
 	public int getId() {				//instance method
 		return this.id;
@@ -328,7 +375,7 @@ class Customer{
 		System.out.println("\nCustomer Id:"+customerId+" Customer Name:"+customerName);
 	}
 
-	//CONSTRUCTOR CHAINING     inheritance
+	//CONSTRUCTOR CHAINING
 	Customer(){
 		System.out.println("\nCustomer chaining");
 	}
@@ -461,7 +508,7 @@ class Competition{
 		System.out.println(" Competition Date: " + competitionDate + " Competition Name: "+competitionName);
 	}	
 
-	//static nested class -- part of relationship
+	//static nested class
 	public static class CompName{
 		public void printCompetitionName(){
 			System.out.println(" Competition Name: " + competitionName);
